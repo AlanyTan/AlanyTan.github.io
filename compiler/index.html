@@ -63,6 +63,7 @@ options:<input type="text" maxlen=32 id="gccoptions" value="-Wall" />
 <span style="margin: 0 5px 0 5px" id="gcc-compile-status"></span>
 <span style="margin: 0 5px 0 5px">Errors: <span id="gcc-error-count">0</span> Warnings: <span id="gcc-warning-count">0</span></span>
 <input type="file" id="file-input" />
+<button type='button' onclick="writeSingleFile()">Save</button>
                 </td>
             </tr>
         </table>
@@ -73,16 +74,32 @@ options:<input type="text" maxlen=32 id="gccoptions" value="-Wall" />
             <ul>Interactive compile is originally created by Neelabh Gupta and Lawrence Angrave from UIUC using the ACE editor.</ul>
             <ul>Virtual Machine with Javascript was originally created at s-macke/jor1k's', which runs the gcc compiler.</ul>
             <ul>The output of gcc is used to highlight errors in the student's program. </ul>
-            <br>
-            License:
+            <h4>License:</h4>
             <ul>This compiler demo is dual licensed under the GPL v3 and Illinois/NCSA Open Source license.</ul>
             <ul>The ACE editor is licensed under the BSD license.</ul>
             <br>
 
         </div>
+        <div id="console"></div>
         
 
 <script src="ace-editor-src-min-noconflict/ace.js"></script>
+<script>
+    function writeSingleFile(e) {
+        //document.getElementById('console').textContent = ("writeSingleFile function started...");
+        var link = document.createElement("a");
+        var filename = "untitled.c";
+        link.download = filename;
+        var text = GetCodeText();
+        document.getElementById('console').textContent = (text);    
+        var blob = new Blob([text], {type : "text/plain;charset=utf-8"});
+        //link.innerHTML = "Download File";
+        link.href = URL.createObjectURL(blob);
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+    }
+</script>
 <script>
     function readSingleFile(e) {
         var file = e.target.files[0];
@@ -101,9 +118,7 @@ options:<input type="text" maxlen=32 id="gccoptions" value="-Wall" />
         var element = document.getElementById('code');
         element.textContent = contents;
     }
-
     document.getElementById('file-input').addEventListener('change', readSingleFile, false);
-
 </script>
 <script src="jor1k-master-min.js"></script>
 
