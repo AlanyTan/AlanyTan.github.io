@@ -62,13 +62,7 @@ options:<input type="text" maxlen=32 id="gccoptions" value="-Wall" />
 <button type='button' onclick= "RunCode(GetCodeText(),document.getElementById('gccoptions').value);return false;" >Compile and run</button>
 <span style="margin: 0 5px 0 5px" id="gcc-compile-status"></span>
 <span style="margin: 0 5px 0 5px">Errors: <span id="gcc-error-count">0</span> Warnings: <span id="gcc-warning-count">0</span></span>
-Theme<select onchange='editor.setTheme("ace/theme/"+this.options[this.selectedIndex].value)'>
-  <option value="monokai">monokai</option>
-  <option value="terminal">terminal</option>
-  <option value="tomorrow">tomorrow</option>
-  <option value="xcode">xcode</option>
-</select>
-
+<input type="file" id="file-input" />
                 </td>
             </tr>
         </table>
@@ -84,9 +78,7 @@ Theme<select onchange='editor.setTheme("ace/theme/"+this.options[this.selectedIn
             <ul>This compiler demo is dual licensed under the GPL v3 and Illinois/NCSA Open Source license.</ul>
             <ul>The ACE editor is licensed under the BSD license.</ul>
             <br>
-        <input type="file" id="file-input" />
-        <h3>Contents of the file:</h3>
-        <pre id="file-content"></pre>
+
         </div>
         
 
