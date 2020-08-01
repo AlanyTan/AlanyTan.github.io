@@ -56,6 +56,7 @@ int main() {
 
 <select id="lang" onchange='editor.setValue("");editor.getSession().setMode("ace/mode/"+this.options[this.selectedIndex].value)'>
   <option value="c_cpp">gcc</option>
+  <option value="c_cpp">g++</option>
 </select> 
 options:<input type="text" maxlen=32 id="gccoptions" value="-Wall" />
 <button type='button' onclick= "RunCode(GetCodeText(),document.getElementById('gccoptions').value);return false;" >Compile and run</button>
@@ -74,15 +75,14 @@ Theme<select onchange='editor.setTheme("ace/theme/"+this.options[this.selectedIn
        
         </div>
         <div class="infobox">
-            <h3>About</h3>
-            <ul>This interactive compile demo is by Neelabh Gupta and Lawrence Angrave from UIUC. It uses the ACE editor and jor1k's' gcc to compile the student's C program.</ul>
+            <h4>Credit:</h4>
+            <ul>Interactive compile is originally created by Neelabh Gupta and Lawrence Angrave from UIUC using the ACE editor.</ul>
+            <ul>Virtual Machine with Javascript was originally created at s-macke/jor1k's', which runs the gcc compiler.</ul>
             <ul>The output of gcc is used to highlight errors in the student's program. </ul>
             <br>
+            License:
             <ul>This compiler demo is dual licensed under the GPL v3 and Illinois/NCSA Open Source license.</ul>
             <ul>The ACE editor is licensed under the BSD license.</ul>
-            <br>
-        
-            <ul>Lawrence and UIUC students are building a more complete learning environment to playfully learn C and system programming at <a href='http://cs-education.github.io/sys'>cs-education.github.io/sys</a>.</ul>
             <br>
         <input type="file" id="file-input" />
         <h3>Contents of the file:</h3>
@@ -111,6 +111,7 @@ Theme<select onchange='editor.setTheme("ace/theme/"+this.options[this.selectedIn
     }
 
     document.getElementById('file-input').addEventListener('change', readSingleFile, false);
+    document.getElementById('code').addEventListener('change', readSingleFile, false);
 
 </script>
 <script src="jor1k-master-min.js"></script>
