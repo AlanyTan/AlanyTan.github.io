@@ -106,12 +106,11 @@ Theme<select onchange='editor.setTheme("ace/theme/"+this.options[this.selectedIn
     }
 
     function displayContents(contents) {
-        var element = document.getElementById('file-content');
+        var element = document.getElementById('code');
         element.textContent = contents;
     }
 
     document.getElementById('file-input').addEventListener('change', readSingleFile, false);
-    document.getElementById('code').addEventListener('change', readSingleFile, false);
 
 </script>
 <script src="jor1k-master-min.js"></script>
