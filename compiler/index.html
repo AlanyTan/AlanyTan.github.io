@@ -47,7 +47,7 @@ int main() {
                             <input type="file" id="files" style="visibility:hidden;width:1px; height:1px;" name="files[]" onchange='OnUploadFiles(this.files)' multiple />
                         </label>
                         <input type="text" id="loadPath" style="height: 20px;" value="/home/user" />
-                        <img src="images/tar.png" width="20px" height="20px"  onclick='jor1kgui.fs.TAR(jor1kgui.fs.TAR(document.getElementById("loadPath").value))' title="Download of folder" />
+                        <img src="images/tar.png" width="20px" height="20px"  onclick='jor1kgui.fs.TAR(document.getElementById("loadPath").value)' title="Download of folder" />
                         <textarea style="display:none;" id="clipboard">clipb</textarea>
                         </span>
                         <span id="stats" style="float: right"></span>
@@ -206,7 +206,7 @@ function Start() {
             if (params[i].substr(0,4) == "user") {
                 userid = params[i].split('=')[1];
                 jor1kparameters.userid = userid;
-                jor1kparameters.fs.lazyloadimages.push("//jor1k.com/sync/tarballs/"+userid+".tar.bz2");
+                //jor1kparameters.fs.lazyloadimages.push("//jor1k.com/sync/tarballs/"+userid+".tar.bz2");
             }
             if (params[i].substr(0,3) == "cpu") {
                 jor1kparameters.system.cpu = params[i].split('=')[1];
