@@ -41,24 +41,26 @@ int main() {
                 </td>
                 <td style="vertical-align: top">
                     <table>
-                    <tr><td>
-                        <label>
-                            <img src="images/download.png" width="20px" height="20px" title="Upload to folder" />
-                            <input type="file" id="files" style="visibility:hidden;width:1px; height:1px;" name="files[]" onchange='OnUploadFiles(this.files)' multiple />
-                        </label>
-                        <input type="text" id="loadPath" style="height: 20px;" value="/home/user" />
-                        <img src="images/tar.png" width="20px" height="20px"  onclick='jor1kgui.fs.TAR(document.getElementById("loadPath").value)' title="Download of folder" />
-                        <textarea style="display:none;" id="clipboard">clipb</textarea>
-                        </span>
-                        <span id="stats" style="float: right"></span>
-                    </td></tr>
-                    <tr><td>
-                        <table id="tty" class="terminal" cellpadding="0" cellspacing="0">
-                        </table>
-                    </td></tr>
-                    <tr><td>
-                        <span style="float: left">
-                        <button type='button' onclick='term_output="";waitingForActivate=true;jor1kgui.Reset()'>Reset VM</button>
+                        <tr><td>
+                            <span style="float: left">
+                                <button type='button' onclick='term_output="";waitingForActivate=true;jor1kgui.Reset()'>Reset VM</button>
+                            </span>
+                            <span id="stats" style="float: right"></span>
+                        </td></tr>
+                        <tr><td>
+                            <table id="tty" class="terminal" cellpadding="0" cellspacing="0">
+                            </table>
+                        </td></tr>
+                        <tr><td>
+                            <label>
+                                <img src="images/upload.png" style="vertical-align:middle;width:28px;height:28px" title="Upload to folder" />
+                                <input type="file" id="files" style="visibility:hidden;width:1px; height:1px;" name="files[]" onchange='OnUploadFiles(this.files)' multiple />
+                            </label>
+                            <label>
+                                <input type="text" id="loadPath" style="height:100%" value="/home/user" />
+                            </label>
+                            <img src="images/tar.png" style="vertical-align:middle;width:28px;height:28px" onclick='jor1kgui.fs.TAR(document.getElementById("loadPath").value)' title="Download of folder" />
+                            <textarea style="display:none;" id="clipboard">clipb</textarea>
                     </td></tr>
                     </table>
                 </td>
