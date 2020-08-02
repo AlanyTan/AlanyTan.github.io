@@ -7,7 +7,7 @@
     </head>
     <body onload="Start()">
     <div class="heading">
-    <h1>Web-based VM with C++ (and C) Compiler for C++ Programming Language </h1>
+    <h1>Web-based VM running GCC Compiler for <a href=http://www.tup.tsinghua.edu.cn/booksCenter/book_06601801.html> C++ Programming Language</a></h1>
     </div>
     
     <div >
@@ -34,7 +34,7 @@ int main() {
                     <option value="cpp">c++</option>
                     <option value="c">c</option>
                     </select> 
-                    options:<input type="text" maxlen=32 id="gccoptions" value="-Wall" />
+                    options:<input type="text" maxlen=32 id="gccoptions" value="-Wall -lstdc++" />
                     <button type='button' onclick= "RunCode(GetCodeText(),document.getElementById('gccoptions').value,document.getElementById('file-name').value);return false;" >Compile and run</button>
                     <span style="margin: 0 5px 0 5px" id="gcc-compile-status"></span>
                     <span style="margin: 0 5px 0 5px">Errors: <span id="gcc-error-count">0</span> Warnings: <span id="gcc-warning-count">0</span></span>
@@ -42,21 +42,23 @@ int main() {
                 <td style="vertical-align: top">
                     <table>
                     <tr><td>
-                    <table id="tty" class="terminal" cellpadding="0" cellspacing="0">
-                    </table>
+                        <label>
+                            <img src="images/download.png" width="20px" height="20px" title="Upload to folder" />
+                            <input type="file" id="files" style="visibility:hidden;width:1px; height:1px;" name="files[]" onchange='OnUploadFiles(this.files)' multiple />
+                        </label>
+                        <input type="text" id="loadPath" style="height: 20px;" value="/home/user" />
+                        <img src="images/tar.png" width="20px" height="20px"  onclick='jor1kgui.fs.TAR(jor1kgui.fs.TAR(document.getElementById("loadPath").value))' title="Download of folder" />
+                        <textarea style="display:none;" id="clipboard">clipb</textarea>
+                        </span>
+                        <span id="stats" style="float: right"></span>
                     </td></tr>
                     <tr><td>
-                    <span style="float: left">
-                    <button type='button' onclick='term_output="";waitingForActivate=true;jor1kgui.Reset()'>Reset VM</button>
-                    <input type="text" id="loadPath" style="height: 20px;" value="/home/user" />
-                    <label>
-                        <img src="images/upload.png" width="20px" height="20px" title="Upload to folder" />
-                        <input type="file" id="files" style="visibility:hidden;width:1px; height:1px;" name="files[]" onchange='OnUploadFiles(this.files)' multiple />
-                    </label>
-                    <img src="images/tar.png" width="20px" height="20px"  onclick='jor1kgui.fs.TAR(jor1k.fs.TAR(document.getElementById("loadPath").value))' title="Download of folder" />
-                    <textarea style="display:none;" id="clipboard">clipb</textarea>
-                    </span>
-                    <span id="stats" style="float: right"></span>
+                        <table id="tty" class="terminal" cellpadding="0" cellspacing="0">
+                        </table>
+                    </td></tr>
+                    <tr><td>
+                        <span style="float: left">
+                        <button type='button' onclick='term_output="";waitingForActivate=true;jor1kgui.Reset()'>Reset VM</button>
                     </td></tr>
                     </table>
                 </td>
@@ -77,9 +79,17 @@ int main() {
 <script src="ace-editor-src-min-noconflict/ace.js"></script>
 <script>
     function setFileExtension(ext) {
-        var filenamebox=document.getElementById("file-name")
-        var filename=filenamebox.value.replace(/\..*$/, '')
-        filenamebox.value=filename+'.'+ext
+        var filenamebox=document.getElementById("file-name");
+        var filename=filenamebox.value.replace(/\..*$/, '');
+        filenamebox.value=filename+'.'+ext;
+        var optionbox=document.getElementById("gccoptions");
+        if (ext == "cpp") {
+            optionbox.value="-Wall -lstdc++";
+        }
+        else {
+            optionbox.value="-Wall";
+        }
+
     }
     function validateFileName(e){
         var target = e.target;
