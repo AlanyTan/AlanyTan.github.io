@@ -4,3 +4,6 @@
 [submodule "openrisc-sys"]
 	path = openrisc-sys
 	url = https://github.com/s-macke/jor1k-sysroot
+[submodule "compiler\\openrisc-sys"]
+	path = compiler\\openrisc-sys
+	url = https://github.com/AlanyTan/jor1k-sysroot
