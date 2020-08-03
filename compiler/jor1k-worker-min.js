@@ -18919,6 +18919,9 @@ function CopyBinary(to, from, size, buffersrc, bufferdest) {
 function LoadBinaryResource(url, OnSuccess, OnError) {
     var req = new XMLHttpRequest();
     // open might fail, when we try to open an unsecure address, when the main page is secure
+    //updated to accomodate S3 which does not handle "//"
+    url = url.replace(/([^:])\/\//g,"$1/")
+    //end update to accomodate S3 which does not handle "//"
     try {
         req.open('GET', url, true);
     } catch(err) {
@@ -18974,6 +18977,9 @@ function LoadBinaryResourceII(url, OnSuccess, NonBlocking, OnError) {
 
 function LoadTextResource(url, OnSuccess, OnError) {
     var req = new XMLHttpRequest();
+    //updated to accomodate S3 which does not handle "//"
+    url = url.replace(/([^:])\/\//g,"$1/")
+    //end update to accomodate S3 which does not handle "//"
     req.open('GET', url, true);
     //req.overrideMimeType('text/xml');
     req.onreadystatechange = function () {
